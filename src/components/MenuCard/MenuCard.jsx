@@ -1,29 +1,36 @@
-// menuItem: {id: 1, title: "Burger", category: "breakfast", price: 15.99, img: "./images/item-1.jpeg", …}
 import PropTypes from 'prop-types';
+import css from './MenuCard.module.css';
 
-const MenuCard = ({menuItem}) => {
+const MenuCard = ({ menuItem }) => {
   return (
-    <div className="menu-card">
-        <img src={menuItem.image} alt={menuItem.title} className="menu-card__image" />
-        <h3 className="menu-card__title">{menuItem.name}</h3>
-        <p className="menu-card__price">{menuItem.price}</p>
-        <p className="menu-card__description">{menuItem.description}</p>
-        <p className="menu-card__spiciness">{menuItem.spiciness}</p>
-        <p className="menu-card__isVegetarian">{menuItem.isVegetarian ? 'Vegetarian' : 'Non-vegetarian'}</p>
+    <div className={css.card}>
+      <img src={menuItem.image} alt={menuItem.title} className={css.image} />
+      <div className={css.info}>
+        <h3 className={css.title}>{menuItem.name}</h3>
+        <p className={css.price}>{menuItem.price} грн</p>
+      </div>
+      <p className={css.description}>{menuItem.description}</p>
+      <div className={css.tags}>
+        {menuItem.spiciness > 0 && <span className={css.tag}>🌶️ Spicy {menuItem.spiciness}</span>}
+        {menuItem.isVegetarian && <span className={css.tag}>🥦 Vegetarian</span>}
+      </div>
     </div>
-  )
-}
+
+  );
+};
 
 MenuCard.propTypes = {
   menuItem: PropTypes.shape({
-    name: PropTypes.number.isRequired,
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired, 
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,
     description: PropTypes.string,
     isVegetarian: PropTypes.bool,
-    spiciness: PropTypes.number
-  }).isRequired
+    spiciness: PropTypes.number,
+    isAlcoholic: PropTypes.bool,
+  }).isRequired,
 };
 
 export default MenuCard;

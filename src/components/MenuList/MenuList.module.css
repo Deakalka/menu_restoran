@@ -1,0 +1,20 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Адаптивна сітка */
+  gap: 20px; /* Відступи між картками */
+  padding: 20px;
+  list-style: none; /* Видаляє маркери списку */
+  margin: 0;
+}
+
+.item {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тінь для карток */
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Плавна анімація */
+}
+
+.item:hover {
+  transform: translateY(-5px); /* Ефект підняття при наведенні */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Збільшена тінь */
+}
