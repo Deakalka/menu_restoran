@@ -1,0 +1,194 @@
+{
+    "menu": [
+      {
+        "category": "Супи",
+        "items": [
+          {
+            "id": 1,
+            "name": "Борщ український",
+            "description": "Традиційний український борщ з м’ясом, картоплею, буряком та капустою.",
+            "price": 120,
+            "image": "images/borshch.jpg",
+            "isVegetarian": false,
+            "spiciness": 1
+          },
+          {
+            "id": 2,
+            "name": "Крем-суп з грибами",
+            "description": "Ніжний вершковий суп з печерицями та білими грибами.",
+            "price": 140,
+            "image": "images/mushroom_soup.jpg",
+            "isVegetarian": true,
+            "spiciness": 0
+          }
+        ]
+      },
+      {
+        "category": "Гарячі страви",
+        "items": [
+          {
+            "id": 3,
+            "name": "Стейк з яловичини",
+            "description": "Соковитий стейк зі спеціями, подається з овочами-гриль.",
+            "price": 350,
+            "image": "images/steak.jpg",
+            "isVegetarian": false,
+            "spiciness": 2
+          },
+          {
+            "id": 4,
+            "name": "Лосось на грилі",
+            "description": "Філе лосося, приготоване на грилі, подається з лимонним соусом.",
+            "price": 400,
+            "image": "images/salmon.jpg",
+            "isVegetarian": false,
+            "spiciness": 1
+          }
+        ]
+      },
+      {
+        "category": "Десерти",
+        "items": [
+          {
+            "id": 5,
+            "name": "Чізкейк Нью-Йорк",
+            "description": "Класичний чізкейк з ніжним сирним кремом.",
+            "price": 160,
+            "image": "images/cheesecake.jpg",
+            "isVegetarian": true,
+            "spiciness": 0
+          },
+          {
+            "id": 6,
+            "name": "Тірамісу",
+            "description": "Італійський десерт з кавовим бісквітом та маскарпоне.",
+            "price": 180,
+            "image": "images/tiramisu.jpg",
+            "isVegetarian": true,
+            "spiciness": 0
+          }
+        ]
+      },
+      {
+        "category": "Безалкогольні напої",
+        "items": [
+          {
+            "id": 7,
+            "name": "Лимонад",
+            "description": "Освіжаючий лимонад з натурального лимонного соку та м’яти.",
+            "price": 90,
+            "image": "images/lemonade.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": false
+          },
+          {
+            "id": 8,
+            "name": "Еспресо",
+            "description": "Класична міцна кава.",
+            "price": 70,
+            "image": "images/espresso.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": false
+          },
+          {
+            "id": 9,
+            "name": "Капучино",
+            "description": "Ароматна кава з ніжною молочною піною.",
+            "price": 80,
+            "image": "images/cappuccino.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": false
+          },
+          {
+            "id": 10,
+            "name": "Молочний коктейль",
+            "description": "Смачний коктейль на основі молока та морозива.",
+            "price": 100,
+            "image": "images/milkshake.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": false
+          }
+        ]
+      },
+      {
+        "category": "Алкогольні напої",
+        "items": [
+          {
+            "id": 11,
+            "name": "Червоне вино",
+            "description": "Напівсухе червоне вино, витримане в дубових бочках.",
+            "price": 250,
+            "image": "images/red_wine.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": true
+          },
+          {
+            "id": 12,
+            "name": "Біле вино",
+            "description": "Фруктове біле вино з легким смаком.",
+            "price": 230,
+            "image": "images/white_wine.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": true
+          },
+          {
+            "id": 13,
+            "name": "Пиво світле",
+            "description": "Освіжаюче світле пиво з пшеничних сортів.",
+            "price": 120,
+            "image": "images/light_beer.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": true
+          },
+          {
+            "id": 14,
+            "name": "Пиво темне",
+            "description": "Ароматне темне пиво з карамельними нотками.",
+            "price": 130,
+            "image": "images/dark_beer.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": true
+          },
+          {
+            "id": 15,
+            "name": "Мохіто (з алкоголем)",
+            "description": "Класичний кубинський коктейль з ромом, м’ятою та лаймом.",
+            "price": 200,
+            "image": "images/mojito.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": true
+          },
+          {
+            "id": 16,
+            "name": "Горілка",
+            "description": "Класична українська горілка 40%.",
+            "price": 180,
+            "image": "images/vodka.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": true
+          },
+          {
+            "id": 17,
+            "name": "Віскі",
+            "description": "Витриманий шотландський віскі 12 років.",
+            "price": 350,
+            "image": "images/whiskey.jpg",
+            "isVegetarian": true,
+            "spiciness": 0,
+            "isAlcoholic": true
+          }
+        ]
+      }
+    ]
+  }
+  
