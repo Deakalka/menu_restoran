@@ -3,15 +3,13 @@ import css from './MenuList.module.css';
 import PropTypes from 'prop-types';
 
 const MenuList = ({ menuItems, userAge, curCategory }) => {
-  // Фільтруємо страви за віком користувача
   const filteredMenuItems = menuItems.filter((item) => {
     if (item.isAlcoholic && userAge < 18) {
-      return false; // Приховуємо алкогольні напої для неповнолітніх
+      return false; 
     }
     return true;
   });
 
-  // Фільтруємо страви за обраною категорією
   const categoryDish = filteredMenuItems.filter((item) => item.category === curCategory);
 
   return (
@@ -30,7 +28,7 @@ MenuList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       isAlcoholic: PropTypes.bool,
-      category: PropTypes.string.isRequired, // Перевірка на наявність категорії
+      category: PropTypes.string.isRequired, 
     })
   ).isRequired,
   userAge: PropTypes.number.isRequired,

@@ -11,7 +11,8 @@
           "price": 120,
           "image": "images/borshch.jpg",
           "isVegetarian": false,
-          "spiciness": 1
+          "spiciness": 1,
+          "category": "Супи"
         },
         {
           "id": 2,
@@ -21,7 +22,8 @@
           "price": 140,
           "image": "images/mushroom_soup.jpg",
           "isVegetarian": true,
-          "spiciness": 0
+          "spiciness": 0,
+          "category": "Супи"
         }
       ]
     },
@@ -36,7 +38,8 @@
           "price": 350,
           "image": "images/steak.jpg",
           "isVegetarian": false,
-          "spiciness": 2
+          "spiciness": 2,
+          "category": "Гарячі страви"
         },
         {
           "id": 4,
@@ -46,7 +49,8 @@
           "price": 400,
           "image": "images/salmon.jpg",
           "isVegetarian": false,
-          "spiciness": 1
+          "spiciness": 1,
+          "category": "Гарячі страви"
         }
       ]
     },
@@ -61,7 +65,8 @@
           "price": 160,
           "image": "images/cheesecake.jpg",
           "isVegetarian": true,
-          "spiciness": 0
+          "spiciness": 0,
+          "category": "Десерти"
         },
         {
           "id": 6,
@@ -71,7 +76,8 @@
           "price": 180,
           "image": "images/tiramisu.jpg",
           "isVegetarian": true,
-          "spiciness": 0
+          "spiciness": 0,
+          "category": "Десерти"
         }
       ]
     },
@@ -87,7 +93,8 @@
           "image": "images/lemonade.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": false
+          "isAlcoholic": false,
+          "category": "Безалкогольні напої"
         },
         {
           "id": 8,
@@ -98,7 +105,8 @@
           "image": "images/espresso.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": false
+          "isAlcoholic": false,
+          "category": "Безалкогольні напої"
         },
         {
           "id": 9,
@@ -109,7 +117,8 @@
           "image": "images/cappuccino.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": false
+          "isAlcoholic": false,
+          "category": "Безалкогольні напої"
         },
         {
           "id": 10,
@@ -120,7 +129,8 @@
           "image": "images/milkshake.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": false
+          "isAlcoholic": false,
+          "category": "Безалкогольні напої"
         }
       ]
     },
@@ -136,7 +146,8 @@
           "image": "images/red_wine.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": true
+          "isAlcoholic": true,
+          "category": "Алкогольні напої"
         },
         {
           "id": 12,
@@ -147,7 +158,8 @@
           "image": "images/white_wine.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": true
+          "isAlcoholic": true,
+          "category": "Алкогольні напої"
         },
         {
           "id": 13,
@@ -158,7 +170,8 @@
           "image": "images/light_beer.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": true
+          "isAlcoholic": true,
+          "category": "Алкогольні напої"
         },
         {
           "id": 14,
@@ -169,7 +182,8 @@
           "image": "images/dark_beer.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": true
+          "isAlcoholic": true,
+          "category": "Алкогольні напої"
         },
         {
           "id": 15,
@@ -180,7 +194,8 @@
           "image": "images/mojito.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": true
+          "isAlcoholic": true,
+          "category": "Алкогольні напої"
         },
         {
           "id": 16,
@@ -191,7 +206,8 @@
           "image": "images/vodka.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": true
+          "isAlcoholic": true,
+          "category": "Алкогольні напої"
         },
         {
           "id": 17,
@@ -202,7 +218,8 @@
           "image": "images/whiskey.jpg",
           "isVegetarian": true,
           "spiciness": 0,
-          "isAlcoholic": true
+          "isAlcoholic": true,
+          "category": "Алкогольні напої"
         }
       ]
     }

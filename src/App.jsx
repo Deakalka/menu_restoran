@@ -6,32 +6,38 @@ import menuItem from './menu.json';
 import './App.css';
 
 function App() {
-  const [user, setUser] = useState(()=>{
+  const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
-    return savedUser ? JSON.parse(savedUser) : {name: "", age: 0, dish: "", price: 0, category: ""};
+    return savedUser ? JSON.parse(savedUser) : { name: "", age: 0, dish: "", price: 0, category: "" };
   });
+
+  const [curCategory, setCurCategory] = useState("Оберіть категорію"); // Початкова категорія
+
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
     if (savedUser) {
       setUser(JSON.parse(savedUser));
     }
   }, []);
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
 
-
-
-  const categories = menuItem.menu.map((category) => category.category);
   const allMenuItems = menuItem.menu.flatMap((category) => category.items);
-
   
+  console.log("Обрана категорія:", curCategory);
   return (
     <>
       <h1>Меню ресторану</h1>
       <Description />
-      <UserForm user={user} setUser={setUser} categories={categories} />
-      <MenuList menuItems={allMenuItems} userAge={user.age} curCategory={user.categories}/>
+      <UserForm
+        user={user}
+        setUser={setUser}
+        categories={menuItem.menu.map((cat) => cat.category)}
+        setCurCategory={setCurCategory}
+      />
+      <MenuList menuItems={allMenuItems} userAge={user.age} curCategory={curCategory} />
     </>
   );
 }

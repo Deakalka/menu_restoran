@@ -1,7 +1,7 @@
 import css from "./UserForm.module.css";
 import PropTypes from 'prop-types';
 
-const UserForm = ({ user, setUser, categories }) => {
+const UserForm = ({ user, setUser, categories, setCurCategory }) => {
   const allCategories = () => {
     return categories
       .filter((category) => {
@@ -34,7 +34,10 @@ const UserForm = ({ user, setUser, categories }) => {
         <select
           className={css.select}
           value={user.category}
-          onChange={(e) => setUser({ ...user, category: e.target.value })}
+          onChange={(e) => {
+            setUser({ ...user, category: e.target.value });
+            setCurCategory(e.target.value); 
+          }}
         >
           <option value="">Оберіть категорію</option>
           {allCategories()}
@@ -86,6 +89,7 @@ UserForm.propTypes = {
   }).isRequired,
   setUser: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setCurCategory: PropTypes.func.isRequired, 
 };
 
 export default UserForm;
