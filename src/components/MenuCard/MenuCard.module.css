@@ -1,53 +1,221 @@
-.card {
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    height: 100%; /* Щоб всі картки були однакової висоти */
-  }
-  
-  .image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; /* Зображення заповнює контейнер */
-    border-radius: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0 0 10px 0;
-    color: #333;
-  }
-  
-  .price {
-    font-size: 1.25rem;
-    font-weight: 500;
-    color: #e67e22; /* Помаранчевий колір для ціни */
-    margin: 0 0 10px 0;
-  }
-  
-  .description {
-    font-size: 1rem;
-    color: #666;
-    margin: 0 0 10px 0;
-    flex-grow: 1; /* Опис займає доступний простір */
-  }
-  
-  .spiciness {
-    font-size: 0.9rem;
-    color: #888;
-    margin: 0 0 5px 0;
-  }
-  
-  .isVegetarian {
-    font-size: 0.9rem;
-    color: #27ae60; /* Зелений колір для вегетаріанських страв */
-    margin: 0;
-    font-weight: 500;
-  }
-  .tag{
-    color: #444;
-  }
+/* Елегантний класичний стиль */
+/* .card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background-color: #fff;
+  margin: 16px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+} */
+
+.image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 8px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+.price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #9c6644;
+  margin: 0;
+}
+
+.description {
+  padding: 12px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666;
+  flex-grow: 1;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 16px 16px;
+  gap: 8px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #f8f3ed;
+  color: #9c6644;
+}
+
+/* Сучасний темний стиль */
+.cardDark {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  background-color: #1a1a1a;
+  margin: 16px;
+}
+
+.cardDark:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.imageDark {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  filter: brightness(1.05);
+}
+
+.infoDark {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 8px;
+  border-bottom: 1px solid #333;
+}
+
+.titleDark {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: #fff;
+}
+
+.priceDark {
+  font-family: 'Poppins', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #e6c78b;
+  margin: 0;
+}
+
+.descriptionDark {
+  padding: 12px 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #c4c4c4;
+  flex-grow: 1;
+}
+
+.tagsDark {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 16px 16px;
+  gap: 8px;
+}
+
+.tagDark {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #333;
+  color: #e6c78b;
+}
+
+/* Мінімалістичний світлий стиль */
+.cardMinimal {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: 1px solid #eaeaea;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  margin: 16px;
+}
+
+.cardMinimal:hover {
+  border-color: #ccc;
+}
+
+.imageMinimal {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.infoMinimal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 16px 8px;
+}
+
+.titleMinimal {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  color: #000;
+}
+
+.priceMinimal {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+}
+
+.descriptionMinimal {
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+  flex-grow: 1;
+}
+
+.tagsMinimal {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 16px 16px;
+  gap: 8px;
+}
+
+.tagMinimal {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 0;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: #f5f5f5;
+  color: #555;
+}

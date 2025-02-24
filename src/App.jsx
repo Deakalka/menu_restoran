@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   const [user, setUser] = useState(() => {
     const savedUser = localStorage.getItem("user");
-    return savedUser ? JSON.parse(savedUser) : { name: "", age: 0, dish: "", price: 0, category: "" };
+    return savedUser ? JSON.parse(savedUser) : { name: "", age: "", dish: "", price: 0, category: "" };
   });
 
   const [curCategory, setCurCategory] = useState("Оберіть категорію"); // Початкова категорія
@@ -26,7 +26,7 @@ function App() {
 
   const allMenuItems = menuItem.menu.flatMap((category) => category.items);
   
-  console.log("Обрана категорія:", curCategory);
+
   return (
     <>
       <h1>Меню ресторану</h1>
@@ -36,8 +36,9 @@ function App() {
         setUser={setUser}
         categories={menuItem.menu.map((cat) => cat.category)}
         setCurCategory={setCurCategory}
+        
       />
-      <MenuList menuItems={allMenuItems} userAge={user.age} curCategory={curCategory} />
+      <MenuList menuItems={allMenuItems} userAge={user.age} userDish={user.dish} curCategory={curCategory} />
     </>
   );
 }

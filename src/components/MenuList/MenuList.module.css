@@ -18,3 +18,20 @@
   transform: translateY(-5px); /* Ефект підняття при наведенні */
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Збільшена тінь */
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background-color: #fff;
+  margin: 16px;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}

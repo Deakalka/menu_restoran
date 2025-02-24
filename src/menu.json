@@ -9,7 +9,7 @@
           "name": "Борщ український",
           "description": "Традиційний український борщ з м’ясом, картоплею, буряком та капустою.",
           "price": 120,
-          "image": "images/borshch.jpg",
+          "image": "https://images.unsplash.com/photo-1604908176997-125b42b8a3f3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
           "isVegetarian": false,
           "spiciness": 1,
           "category": "Супи"
@@ -23,6 +23,28 @@
           "image": "images/mushroom_soup.jpg",
           "isVegetarian": true,
           "spiciness": 0,
+          "category": "Супи"
+        },
+        {
+          "id": 18,
+          "title": "Chicken Noodle Soup",
+          "name": "Курячий суп з локшиною",
+          "description": "Ароматний курячий суп з домашньою локшиною та свіжими овочами.",
+          "price": 110,
+          "image": "images/chicken_noodle_soup.jpg",
+          "isVegetarian": false,
+          "spiciness": 0,
+          "category": "Супи"
+        },
+        {
+          "id": 19,
+          "title": "Tomato Soup",
+          "name": "Томатний суп",
+          "description": "Ніжний томатний суп з вершками та базиліком.",
+          "price": 100,
+          "image": "images/tomato_soup.jpg",
+          "isVegetarian": true,
+          "spiciness": 1,
           "category": "Супи"
         }
       ]
@@ -51,6 +73,28 @@
           "isVegetarian": false,
           "spiciness": 1,
           "category": "Гарячі страви"
+        },
+        {
+          "id": 20,
+          "title": "Chicken Curry",
+          "name": "Куряче карі",
+          "description": "Ароматне куряче карі з рисом та кокосовим молоком.",
+          "price": 280,
+          "image": "images/chicken_curry.jpg",
+          "isVegetarian": false,
+          "spiciness": 3,
+          "category": "Гарячі страви"
+        },
+        {
+          "id": 21,
+          "title": "Vegetable Stir Fry",
+          "name": "Овочеве рагу",
+          "description": "Свіжі овочі, смажені з соєвим соусом та часником.",
+          "price": 180,
+          "image": "images/vegetable_stir_fry.jpg",
+          "isVegetarian": true,
+          "spiciness": 1,
+          "category": "Гарячі страви"
         }
       ]
     },
@@ -75,6 +119,28 @@
           "description": "Італійський десерт з кавовим бісквітом та маскарпоне.",
           "price": 180,
           "image": "images/tiramisu.jpg",
+          "isVegetarian": true,
+          "spiciness": 0,
+          "category": "Десерти"
+        },
+        {
+          "id": 22,
+          "title": "Chocolate Fondant",
+          "name": "Шоколадний фондан",
+          "description": "Ніжний шоколадний десерт з рідкою начинкою.",
+          "price": 150,
+          "image": "images/chocolate_fondant.jpg",
+          "isVegetarian": true,
+          "spiciness": 0,
+          "category": "Десерти"
+        },
+        {
+          "id": 23,
+          "title": "Apple Pie",
+          "name": "Яблучний пиріг",
+          "description": "Домашній яблучний пиріг з корицею та ванільним морозивом.",
+          "price": 140,
+          "image": "images/apple_pie.jpg",
           "isVegetarian": true,
           "spiciness": 0,
           "category": "Десерти"
@@ -127,6 +193,30 @@
           "description": "Смачний коктейль на основі молока та морозива.",
           "price": 100,
           "image": "images/milkshake.jpg",
+          "isVegetarian": true,
+          "spiciness": 0,
+          "isAlcoholic": false,
+          "category": "Безалкогольні напої"
+        },
+        {
+          "id": 24,
+          "title": "Green Tea",
+          "name": "Зелений чай",
+          "description": "Освіжаючий зелений чай з м’ятою та лимоном.",
+          "price": 60,
+          "image": "images/green_tea.jpg",
+          "isVegetarian": true,
+          "spiciness": 0,
+          "isAlcoholic": false,
+          "category": "Безалкогольні напої"
+        },
+        {
+          "id": 25,
+          "title": "Orange Juice",
+          "name": "Апельсиновий сік",
+          "description": "Свіжовичавлений апельсиновий сік.",
+          "price": 80,
+          "image": "images/orange_juice.jpg",
           "isVegetarian": true,
           "spiciness": 0,
           "isAlcoholic": false,
@@ -216,6 +306,30 @@
           "description": "Витриманий шотландський віскі 12 років.",
           "price": 350,
           "image": "images/whiskey.jpg",
+          "isVegetarian": true,
+          "spiciness": 0,
+          "isAlcoholic": true,
+          "category": "Алкогольні напої"
+        },
+        {
+          "id": 26,
+          "title": "Margarita",
+          "name": "Маргарита",
+          "description": "Класичний коктейль з текілою, лаймом та солоною облямівкою.",
+          "price": 220,
+          "image": "images/margarita.jpg",
+          "isVegetarian": true,
+          "spiciness": 0,
+          "isAlcoholic": true,
+          "category": "Алкогольні напої"
+        },
+        {
+          "id": 27,
+          "title": "Gin and Tonic",
+          "name": "Джин з тоніком",
+          "description": "Освіжаючий коктейль з джином, тоніком та шматочком лайму.",
+          "price": 190,
+          "image": "images/gin_tonic.jpg",
           "isVegetarian": true,
           "spiciness": 0,
           "isAlcoholic": true,

@@ -16,13 +16,13 @@ const UserForm = ({ user, setUser, categories, setCurCategory }) => {
         </option>
       ));
   };
-
   return (
     <form className={css.form}>
       <div className={css.formGroup}>
         <label className={css.label}>Назва страви</label>
         <input
           type="text"
+          key="dish"
           className={css.input}
           onChange={(e) => setUser({ ...user, dish: e.target.value })}
           value={user.dish}
@@ -32,7 +32,7 @@ const UserForm = ({ user, setUser, categories, setCurCategory }) => {
       <div className={css.formGroup}>
         <label className={css.label}>Категорія</label>
         <select
-          className={css.select}
+          className={`${css.select} ${user.dish.trim().length > 0 ? css.dimmed : ''}` }
           value={user.category}
           onChange={(e) => {
             setUser({ ...user, category: e.target.value });
@@ -49,7 +49,9 @@ const UserForm = ({ user, setUser, categories, setCurCategory }) => {
         <input
           type="number"
           className={css.input}
+          key="price"
           value={user.price}
+          placeholder="Виберіть діапазон цін"
           min="0"
           onChange={(e) => setUser({ ...user, price: e.target.value })}
         />
@@ -69,9 +71,9 @@ const UserForm = ({ user, setUser, categories, setCurCategory }) => {
           type="number"
           key="age"
           className={css.input}
-          value={user.age}
+          value={user.age === 0 ? "" : user.age}
           placeholder="Вік"
-          min="0"
+
           onChange={(e) => setUser({ ...user, age: Number(e.target.value) })}
         />
       </div>

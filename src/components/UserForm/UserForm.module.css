@@ -80,3 +80,7 @@
       width: 100%;
     }
   }
+  .dimmed {
+    opacity: 0.5;
+    pointer-events: none; 
+  }
