@@ -11,7 +11,7 @@ function App() {
     return savedUser ? JSON.parse(savedUser) : { name: "", age: "", dish: "", price: 0, category: "" };
   });
 
-  const [curCategory, setCurCategory] = useState("Оберіть категорію"); // Початкова категорія
+  const [curCategory, setCurCategory] = useState("Оберіть категорію"); 
 
   useEffect(() => {
     const savedUser = localStorage.getItem("user");
