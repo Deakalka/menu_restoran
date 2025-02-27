@@ -1,97 +1,104 @@
 import css from "./UserForm.module.css";
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 
-const UserForm = ({ user, setUser, categories, setCurCategory }) => {
-  const allCategories = () => {
-    return categories
-      .filter((category) => {
-        if (category === "Алкогольні напої" && user.age < 18) {
-          return false;
-        }
-        return true;
-      })
-      .map((category) => (
-        <option key={category} value={category}>
-          {category}
-        </option>
-      ));
+const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
+  const handleInputChange = (field, value) => {
+    setUser(prevUser => ({ ...prevUser, [field]: value }));
   };
+
+  const handleCategoryChange = (e) => {
+    const newCategory = e.target.value;
+    setUser(prevUser => ({ ...prevUser, category: newCategory }));
+    setCurCategory(newCategory);
+  };
+
+  const filteredCategories = categories.filter(category => 
+    !(category === "Алкогольні напої" && user.age < 18)
+  );
+
   return (
     <form className={css.form}>
       <div className={css.formGroup}>
-        <label className={css.label}>Назва страви</label>
+        <label htmlFor="dish" className={css.label}>Назва страви</label>
         <input
+          id="dish"
           type="text"
-          key="dish"
           className={css.input}
-          onChange={(e) => setUser({ ...user, dish: e.target.value })}
+          onChange={(e) => handleInputChange('dish', e.target.value)}
           value={user.dish}
+          placeholder="Введіть назву страви"
         />
       </div>
 
       <div className={css.formGroup}>
-        <label className={css.label}>Категорія</label>
+        <label htmlFor="category" className={css.label}>Категорія</label>
         <select
-          className={`${css.select} ${user.dish.trim().length > 0 ? css.dimmed : ''}` }
+          id="category"
+          className={`${css.select} ${user.dish.trim().length > 0 ? css.dimmed : ''}`}
           value={user.category}
-          onChange={(e) => {
-            setUser({ ...user, category: e.target.value });
-            setCurCategory(e.target.value); 
-          }}
+          onChange={handleCategoryChange}
         >
           <option value="">Оберіть категорію</option>
-          {allCategories()}
+          {filteredCategories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
         </select>
       </div>
 
       <div className={css.formGroup}>
-        <label className={css.label}>Ціна</label>
+        <label htmlFor="price" className={css.label}>Ціна</label>
         <input
+          id="price"
           type="number"
           className={css.input}
-          key="price"
-          value={user.price}
+          value={user.price || ''}
           placeholder="Виберіть діапазон цін"
           min="0"
-          onChange={(e) => setUser({ ...user, price: e.target.value })}
+          onChange={(e) => handleInputChange('price', Number(e.target.value))}
         />
       </div>
 
       <div className={css.formGroup}>
         <label className={css.label}>Дані клієнта</label>
         <input
+          id="name"
           type="text"
-          key="name"
           className={css.input}
           value={user.name}
           placeholder="Ім'я"
-          onChange={(e) => setUser({ ...user, name: e.target.value })}
+          onChange={(e) => handleInputChange('name', e.target.value)}
         />
         <input
+          id="age"
           type="number"
-          key="age"
           className={css.input}
-          value={user.age === 0 ? "" : user.age}
+          value={user.age || ''}
           placeholder="Вік"
-
-          onChange={(e) => setUser({ ...user, age: Number(e.target.value) })}
+          min="0"
+          max="120"
+          onChange={(e) => handleInputChange('age', Number(e.target.value))}
         />
       </div>
     </form>
   );
-};
+});
 
 UserForm.propTypes = {
   user: PropTypes.shape({
     name: PropTypes.string,
-    age: PropTypes.number,
+    age: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     dish: PropTypes.string,
-    category: PropTypes.string.isRequired,
-    price: PropTypes.number,
+    category: PropTypes.string,
+    price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   }).isRequired,
   setUser: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
   setCurCategory: PropTypes.func.isRequired, 
 };
+
+UserForm.displayName = 'UserForm';
 
 export default UserForm;

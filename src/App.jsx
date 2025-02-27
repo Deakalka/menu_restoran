@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Description from './components/Description/Description';
 import UserForm from './components/UserForm/UserForm';
 import MenuList from './components/MenuList/MenuList';
+import Reader from './components/Reader/Reader.jsx';
 import menuItem from './menu.json';
 import './App.css';
 
@@ -31,6 +32,7 @@ function App() {
     <>
       <h1>Меню ресторану</h1>
       <Description />
+      <Reader menu={menuItem.menu}/>
       <UserForm
         user={user}
         setUser={setUser}
@@ -39,6 +41,7 @@ function App() {
         
       />
       <MenuList menuItems={allMenuItems} userAge={user.age} userDish={user.dish} curCategory={curCategory} />
+      
     </>
   );
 }

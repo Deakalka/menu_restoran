@@ -1,23 +1,30 @@
 import PropTypes from 'prop-types';
 import css from './MenuCard.module.css';
+import { memo } from 'react';
 
-const MenuCard = ({ menuItem }) => {
+const MenuCard = memo(({ menuItem }) => {
+  const { name, price, image, title, description, spiciness, isVegetarian, isAlcoholic } = menuItem;
+  
   return (
     <div className={css.card}>
-      <img src={menuItem.image} alt={menuItem.title} className={css.image} />
+      <img src={image} alt={title} className={css.image} />
       <div className={css.info}>
-        <h3 className={css.title}>{menuItem.name}</h3>
-        <p className={css.price}>{menuItem.price} грн</p>
+        <h3 className={css.title}>{name}</h3>
+        <p className={css.price}>{price} грн</p>
       </div>
-      <p className={css.description}>{menuItem.description}</p>
+      <p className={css.description}>{description}</p>
       <div className={css.tags}>
-        {menuItem.spiciness > 0 && <span className={css.tag}>🌶️ Spicy {menuItem.spiciness}</span>}
-        {menuItem.isVegetarian && <span className={css.tag}>🥦 Vegetarian</span>}
+        {spiciness > 0 && (
+          <span className={`${css.tag} ${css.spicy}`}>
+            {Array(spiciness).fill('🌶️').join('')}
+          </span>
+        )}
+        {isVegetarian && <span className={`${css.tag} ${css.vegetarian}`}>🥦 Вегетаріанська</span>}
+        {isAlcoholic && <span className={`${css.tag} ${css.alcoholic}`}>🍸 Містить алкоголь</span>}
       </div>
     </div>
-
   );
-};
+});
 
 MenuCard.propTypes = {
   menuItem: PropTypes.shape({
@@ -32,5 +39,7 @@ MenuCard.propTypes = {
     isAlcoholic: PropTypes.bool,
   }).isRequired,
 };
+
+MenuCard.displayName = 'MenuCard';
 
 export default MenuCard;
