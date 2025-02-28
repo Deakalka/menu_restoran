@@ -3,7 +3,7 @@ import MenuCard from '../MenuCard/MenuCard';
 import css from './MenuList.module.css';
 import PropTypes from 'prop-types';
 
-const MenuList = memo(({ menuItems, userAge, curCategory, userDish }) => {
+const MenuList = memo(({   menuItems, userAge, curCategory, userDish, onAddToCart, onOpenDishModal  }) => {
   const filteredItems = useMemo(() => {
     // Спочатку фільтруємо по віку
     const ageFiltered = menuItems.filter(item => !(item.isAlcoholic && userAge < 18));
@@ -26,12 +26,17 @@ const MenuList = memo(({ menuItems, userAge, curCategory, userDish }) => {
 
   return (
     <ul className={css.list}>
-      {filteredItems.map((menuItem) => (
-        <li key={menuItem.id} className={css.card}>
-          <MenuCard menuItem={menuItem} />
-        </li>
-      ))}
-    </ul>
+    {filteredItems.map((menuItem) => (
+      <li key={menuItem.id} className={css.card}>
+        <MenuCard 
+          key={`card-${menuItem.id}`}
+          menuItem={menuItem} 
+          onAddToCart={onAddToCart} 
+          onOpenDishModal={onOpenDishModal}
+        />
+      </li>
+    ))}
+  </ul>
   );
 });
 
@@ -47,6 +52,9 @@ MenuList.propTypes = {
   userAge: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   curCategory: PropTypes.string,
   userDish: PropTypes.string,
+  onAddToCart: PropTypes.func.isRequired,
+  onOpenDishModal: PropTypes.func.isRequired,
+
 };
 
 MenuList.defaultProps = {

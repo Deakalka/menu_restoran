@@ -39,7 +39,7 @@ const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
           value={user.category}
           onChange={handleCategoryChange}
         >
-          <option value="">Оберіть категорію</option>
+          <option value="" key="default-option">Оберіть категорію</option>
           {filteredCategories.map((category) => (
             <option key={category} value={category}>
               {category}

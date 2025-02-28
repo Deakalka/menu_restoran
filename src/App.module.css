@@ -1,0 +1,137 @@
+.app {
+  font-family: 'Roboto', 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  color: #333;
+}
+
+.header {
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #4a90e2;
+}
+
+.container {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 24px;
+}
+
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 85px;
+  height: calc(100vh - 145px);
+}
+
+.content {
+  flex: 1;
+  padding: 15px 0;
+}
+
+/* Тематичні кольори */
+.theme-green .header h1 {
+  color: #2ecc71;
+}
+
+.theme-green .sidebar button,
+.theme-green .favoriteBtn,
+.theme-green .addToCartBtn,
+.theme-green .cartButton,
+.theme-green .tabBtn.active {
+  background-color: #2ecc71;
+}
+
+.theme-green .sidebar button:hover,
+.theme-green .favoriteBtn:hover,
+.theme-green .addToCartBtn:hover,
+.theme-green .cartButton:hover {
+  background-color: #27ae60;
+}
+
+/* Темна тема */
+.theme-dark {
+  background-color: #222;
+  color: #eee;
+}
+
+.theme-dark .header,
+.theme-dark .sidebar form,
+.theme-dark .card,
+.theme-dark .readerContainer,
+.theme-dark .cartDropdown {
+  background-color: #333;
+  color: #eee;
+}
+
+.theme-dark .title,
+.theme-dark .label,
+.theme-dark h1, 
+.theme-dark h2,
+.theme-dark h3 {
+  color: #eee;
+}
+
+.theme-dark .input,
+.theme-dark .select {
+  background-color: #444;
+  border-color: #555;
+  color: #eee;
+}
+
+.theme-dark .input::placeholder {
+  color: #888;
+}
+
+/* Респонсивні стилі */
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+  
+  .content {
+    padding-top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 15px;
+  }
+  
+  .header h1 {
+    font-size: 20px;
+  }
+  
+  .container {
+    padding: 15px;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+}
