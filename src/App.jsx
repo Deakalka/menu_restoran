@@ -3,9 +3,10 @@ import UserForm from "./components/UserForm/UserForm";
 import MenuList from "./components/MenuList/MenuList";
 import Cart from "./components/Cart/Cart";
 import css from "./App.module.css";
-import DishModal from "./components/DishModal/DishModal"; // імпортуйте новий компонент
+import DishModal from "./components/DishModal/DishModal";
 import sampleMenuItems from "./menu-data.json";
 import AddDishForm from "./components/AddDishForm/AddDishForm";
+import { nanoid } from "nanoid";
 
 const App = () => {
   const [menuItems, setMenuItems] = useState(sampleMenuItems);
@@ -19,6 +20,8 @@ const App = () => {
   });
   const [curCategory, setCurCategory] = useState("");
   const [cartItems, setCartItems] = useState([]);
+  const [selectedDish, setSelectedDish] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Ініціалізація категорій з меню
   useEffect(() => {
@@ -28,15 +31,13 @@ const App = () => {
     setCategories(uniqueCategories);
   }, [menuItems]);
 
+  // Додавання страви до кошика
   const handleAddToCart = useCallback((item) => {
     setCartItems((prevItems) => {
-      // Перевіряємо, чи є вже така страва в чеку
       const existingItemIndex = prevItems.findIndex(
         (cartItem) => cartItem.id === item.id
       );
-
       if (existingItemIndex !== -1) {
-        // Якщо страва вже є, збільшуємо її кількість
         const updatedItems = [...prevItems];
         updatedItems[existingItemIndex] = {
           ...updatedItems[existingItemIndex],
@@ -49,37 +50,45 @@ const App = () => {
     });
   }, []);
 
+  // Видалення страви з кошика
   const handleRemoveFromCart = useCallback((itemId) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
   }, []);
 
+  // Очищення кошика
   const handleClearCart = useCallback(() => {
     setCartItems([]);
   }, []);
 
-  const [selectedDish, setSelectedDish] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  // Відкриття модального вікна для страви
   const handleOpenModal = (dish) => {
     setSelectedDish(dish);
     setIsModalOpen(true);
   };
+
+  // Закриття модального вікна
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    // Можна опціонально очистити selectedDish після затримки
     setTimeout(() => setSelectedDish(null), 300);
   };
 
-
-
-
- const [newDish,setNewDish] =useState(null)
-
- const addDish =(dish) =>{
-  setNewDish(dish);
- };
-
-
+  // Додавання нової страви до списку страв
+  const handleAddDish = (newDish) => {
+    const dishToAdd = {
+      id: nanoid(), // Генеруємо унікальний ID
+      name: newDish.dishName,
+      title: newDish.dishName,
+      category: newDish.dishCategory,
+      price: Number(newDish.dishPrice),
+      description: newDish.dishDescription,
+      isVegetarian: newDish.selectedOptions.includes("Vegan"),
+      isAlcoholic: newDish.selectedOptions.includes("Alco"),
+      spiciness: newDish.selectedOptions.includes("Hot") ? 1 : 0,
+      ingredients: [], // Можна додати логіку для введення інгредієнтів
+      recipe: "", // Можна додати логіку для введення рецепту
+    };
+    setMenuItems((prevItems) => [...prevItems, dishToAdd]);
+  };
 
   return (
     <div className={css.app}>
@@ -92,7 +101,9 @@ const App = () => {
         />
       </header>
 
-      <div className={`${css.container} ${css.scrollbar} ${css.overflowYAuto} ${css.maxH64}`}>
+      <div
+        className={`${css.container} ${css.scrollbar} ${css.overflowYAuto} ${css.maxH64}`}
+      >
         <aside className={css.sidebar}>
           <UserForm
             user={user}
@@ -100,7 +111,10 @@ const App = () => {
             categories={categories}
             setCurCategory={setCurCategory}
           />
-          <AddDishForm onAddDish={addDish}/>
+          <AddDishForm
+            onAddDish={handleAddDish}
+            categories={categories}
+          />
         </aside>
 
         <main className={css.content}>

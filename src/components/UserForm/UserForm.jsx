@@ -18,7 +18,6 @@ const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
     setUser(prevUser => ({ 
       ...prevUser, 
       ageConsent: isConsented,
-      // Optionally reset age or handle age-related logic
       age: isConsented ? prevUser.age : ''
     }));
   };
