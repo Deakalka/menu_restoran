@@ -62,3 +62,6 @@ MenuCard.propTypes = {
 MenuCard.displayName = 'MenuCard';
 
 export default MenuCard;
+
+
+

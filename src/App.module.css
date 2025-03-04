@@ -135,3 +135,86 @@
     padding: 10px;
   }
 }
+
+.app {
+  font-family: 'Roboto', 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  color: #333;
+}
+
+.header {
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #4a90e2;
+}
+
+.container {
+  display: flex;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 24px;
+}
+
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 85px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Add space between forms */
+  height: calc(100vh - 145px);
+  overflow-y: auto; /* Allow scrolling if content is too long */
+}
+
+.content {
+  flex: 1;
+  padding: 15px 0;
+}
+
+.scrollbar {
+  /* Entire scrollbar */
+  &::-webkit-scrollbar {
+    width: 10px; /* Width of the entire scrollbar */
+  }
+  
+  /* Track (the area behind the scrollbar) */
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Light grey background */
+    border-radius: 10px;
+  }
+  
+  /* Handle (the draggable scrolling element) */
+  &::-webkit-scrollbar-thumb {
+    background: #888; /* Dark grey color */
+    border-radius: 10px;
+    
+    /* Optional: add border to scrollbar thumb */
+    border: 3px solid #f1f1f1;
+  }
+  
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darker grey on hover */
+  }
+}
+
+/* Firefox scrollbar */
+.scrollbar {
+  scrollbar-width: thin; /* Thin scrollbar */
+  scrollbar-color: #888 #f1f1f1; /* Thumb and track color */
+}

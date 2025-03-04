@@ -64,3 +64,19 @@
     padding: 8px 10px;
   }
 }
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 14px;
+  user-select: none;
+}

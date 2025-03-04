@@ -13,8 +13,18 @@ const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
     setCurCategory(newCategory);
   };
 
+  const handleAgeConsent = (e) => {
+    const isConsented = e.target.checked;
+    setUser(prevUser => ({ 
+      ...prevUser, 
+      ageConsent: isConsented,
+      // Optionally reset age or handle age-related logic
+      age: isConsented ? prevUser.age : ''
+    }));
+  };
+
   const filteredCategories = categories.filter(category => 
-    !(category === "Алкогольні напої" && user.age < 18)
+    !(category === "Алкогольні напої" && !user.ageConsent)
   );
 
   return (
@@ -35,7 +45,7 @@ const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
         <label htmlFor="category" className={css.label}>Категорія</label>
         <select
           id="category"
-          className={`${css.select} ${user.dish.trim().length > 0 ? css.dimmed : ''}`}
+          className={`${css.select}  ${user.dish.trim().length > 0 ? css.dimmed : ''}`}
           value={user.category}
           onChange={handleCategoryChange}
         >
@@ -71,16 +81,18 @@ const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
           placeholder="Ім'я"
           onChange={(e) => handleInputChange('name', e.target.value)}
         />
-        <input
-          id="age"
-          type="number"
-          className={css.input}
-          value={user.age || ''}
-          placeholder="Вік"
-          min="0"
-          max="120"
-          onChange={(e) => handleInputChange('age', Number(e.target.value))}
-        />
+        <div className={css.checkboxGroup}>
+          <input
+            id="ageConsent"
+            type="checkbox"
+            className={css.checkbox}
+            checked={user.ageConsent || false}
+            onChange={handleAgeConsent}
+          />
+          <label htmlFor="ageConsent" className={css.checkboxLabel}>
+            Підтверджую, що мені більше 18 років
+          </label>
+        </div>
       </div>
     </form>
   );
@@ -89,7 +101,7 @@ const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
 UserForm.propTypes = {
   user: PropTypes.shape({
     name: PropTypes.string,
-    age: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    ageConsent: PropTypes.bool,
     dish: PropTypes.string,
     category: PropTypes.string,
     price: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
