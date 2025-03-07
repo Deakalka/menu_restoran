@@ -1,105 +1,122 @@
 // DishModal.jsx
-import  { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
-import css from './DishModal.module.css'; // Ви можете використовувати стилі з DishReader
+import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
+import styles from './DishModal.module.css';
 
 const DishModal = ({ dish, isOpen, onClose, onAddToCart }) => {
   const [activeTab, setActiveTab] = useState('description');
+  const { currentTheme } = useTheme();
+  const { t } = useLanguage();
   
   if (!isOpen) return null;
   
   return (
-    <div className={css.overlay} onClick={onClose}>
-      <div className={css.modalContainer} onClick={(e) => e.stopPropagation()}>
-        <div className={css.modalHeader}>
-          <h2>{dish.name}</h2>
-          <button className={css.closeBtn} onClick={onClose}>✕</button>
+    <div className={styles.overlay} onClick={onClose}>
+      <div 
+        className={`${styles.modalContainer} ${styles[currentTheme]}`}
+        onClick={e => e.stopPropagation()}
+      >
+        <div className={styles.modalHeader}>
+          <h2>{dish.title || dish.name}</h2>
+          <button className={styles.closeBtn} onClick={onClose} aria-label={t('close')}>
+            &times;
+          </button>
         </div>
         
-        <div className={css.modalContent}>
-          <div className={css.imageContainer}>
-            <img src={dish.image} alt={dish.name} className={css.dishImage} />
+        <div className={styles.modalContent}>
+          <div className={styles.imageContainer}>
+            <img 
+              src={dish.image || 'https://via.placeholder.com/400x300?text=Немає+зображення'} 
+              alt={dish.name} 
+              className={styles.dishImage} 
+            />
           </div>
-          <div className={css.dishInfo}>
-              <div className={css.tags}>
-                {dish.spiciness > 0 && (
-                  <span key="modal-spicy" className={css.tag}>
-                    Гострота: {Array(dish.spiciness).fill('🌶️').join('')}
-                  </span>
-                )}
-                {dish.isVegetarian && (
-                  <span key="modal-vegetarian" className={css.tag}>
-                    🥦 Вегетаріанська
-                  </span>
-                )}
-                {dish.isAlcoholic && (
-                  <span key="modal-alcoholic" className={css.tag}>
-                    🍸 Містить алкоголь
-                  </span>
-                )}
-              </div>
-              <p className={css.price}>{dish.price} грн</p>
+          
+          <div className={styles.dishInfo}>
+            <div className={styles.tags}>
+              {dish.isVegetarian && (
+                <span className={`${styles.tag} ${styles.vegetarian}`}>
+                  {t('vegetarian')}
+                </span>
+              )}
+              
+              {dish.spiciness > 0 && (
+                <span className={`${styles.tag} ${styles.spicy}`}>
+                  {t('spicy')} {'🌶️'.repeat(dish.spiciness)}
+                </span>
+              )}
+              
+              {dish.isAlcoholic && (
+                <span className={`${styles.tag} ${styles.alcoholic}`}>
+                  {t('alcoholic')}
+                </span>
+              )}
             </div>
-          
-          <div className={css.tabs}>
-            <button 
-              className={`${css.tabBtn} ${activeTab === 'description' ? css.active : ''}`}
-              onClick={() => setActiveTab('description')}
-            >
-              Опис
-            </button>
-            <button 
-              className={`${css.tabBtn} ${activeTab === 'ingredients' ? css.active : ''}`}
-              onClick={() => setActiveTab('ingredients')}
-            >
-              Інгредієнти
-            </button>
-            <button 
-              className={`${css.tabBtn} ${activeTab === 'recipe' ? css.active : ''}`}
-              onClick={() => setActiveTab('recipe')}
-            >
-              Рецепт
-            </button>
-          </div>
-          
-          <div className={css.tabContent}>
-            {activeTab === 'description' && (
-              <div className={css.description}>
-                <p>{dish.description || 'Опис відсутній'}</p>
-              </div>
-            )}
             
-            {activeTab === 'ingredients' && (
-              <div className={css.ingredients}>
-                <h3>Інгредієнти:</h3>
-                {dish.ingredients && dish.ingredients.length > 0 ? (
+            <div className={styles.price}>
+              {dish.price} грн
+            </div>
+            
+            <div className={styles.tabs}>
+              <button
+                className={`${styles.tabBtn} ${activeTab === 'description' ? styles.active : ''}`}
+                onClick={() => setActiveTab('description')}
+              >
+                {t('description')}
+              </button>
+              
+              <button
+                className={`${styles.tabBtn} ${activeTab === 'ingredients' ? styles.active : ''}`}
+                onClick={() => setActiveTab('ingredients')}
+              >
+                {t('ingredients')}
+              </button>
+              
+              <button
+                className={`${styles.tabBtn} ${activeTab === 'recipe' ? styles.active : ''}`}
+                onClick={() => setActiveTab('recipe')}
+              >
+                {t('recipe')}
+              </button>
+            </div>
+            
+            <div className={styles.tabContent}>
+              {activeTab === 'description' && (
+                <div className={styles.description}>
+                  <p>{dish.description}</p>
+                </div>
+              )}
+              
+              {activeTab === 'ingredients' && (
+                <div className={styles.ingredients}>
                   <ul>
-                    {dish.ingredients.map((ingredient, index) => (
-                      <li key={`ingredient-${index}`}>{ingredient}</li>
+                    {dish.ingredients?.map((ingredient, index) => (
+                      <li key={index}>{ingredient}</li>
                     ))}
                   </ul>
-                ) : (
-                  <p>Інформація про інгредієнти відсутня</p>
-                )}
-              </div>
-            )}
-            
-            {activeTab === 'recipe' && (
-              <div className={css.recipe}>
-                <h3>Спосіб приготування:</h3>
-                {dish.recipe ? (
+                </div>
+              )}
+              
+              {activeTab === 'recipe' && (
+                <div className={styles.recipe}>
                   <p>{dish.recipe}</p>
-                ) : (
-                  <p>Рецепт приготування відсутній</p>
-                )}
-              </div>
-            )}
-          </div>
-          
-          <div className={css.actions}>
-            <button className={css.addToCartBtn} onClick={() => onAddToCart(dish)}>
-              Додати до чеку
-            </button>
+                </div>
+              )}
+            </div>
+            
+            <div className={styles.actions}>
+              <button 
+                className={styles.addToCartBtn}
+                onClick={() => {
+                  onAddToCart(dish);
+                  onClose();
+                }}
+              >
+                {t('add_to_cart')}
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -111,15 +128,16 @@ DishModal.propTypes = {
   dish: PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
+    title: PropTypes.string,
     price: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     description: PropTypes.string,
+    ingredients: PropTypes.arrayOf(PropTypes.string),
+    recipe: PropTypes.string,
     isVegetarian: PropTypes.bool,
     spiciness: PropTypes.number,
     isAlcoholic: PropTypes.bool,
-    ingredients: PropTypes.arrayOf(PropTypes.string),
-    recipe: PropTypes.string,
-  }),
+  }).isRequired,
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onAddToCart: PropTypes.func.isRequired,

@@ -4,36 +4,60 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   z-index: 1000;
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: var(--spacing-md);
+}
+
+.theme-dark .overlay {
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
 }
 
 .modalContainer {
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  max-width: 600px;
-  width: 90%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  padding: 20px;
-  animation: fadeIn 0.3s ease-in-out;
+  background-color: var(--bg-primary);
+  width: 100%;
+  max-width: 900px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  animation: zoomIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--border-color);
+}
+
+.theme-dark .modalContainer {
+  background: linear-gradient(145deg, #111111, #0d0d0d);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
@@ -41,152 +65,385 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-primary);
+  z-index: 10;
+}
+
+.theme-dark .modalHeader {
+  background: linear-gradient(to right, #0a0a0a, #111111);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .modalHeader h2 {
-  font-size: 24px;
-  color: #333;
   margin: 0;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.theme-dark .modalHeader h2 {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 .closeBtn {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
   cursor: pointer;
-  color: #666;
-  transition: color 0.2s;
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all var(--transition-normal);
+  width: 40px;
+  height: 40px;
+}
+
+.theme-dark .closeBtn {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .closeBtn:hover {
-  color: #000;
+  background-color: var(--bg-hover);
+  color: var(--accent-color);
+  transform: rotate(90deg);
+}
+
+.theme-dark .closeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
 }
 
 .modalContent {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  overflow: auto;
 }
 
 .imageContainer {
-  width: 100%;
-  height: 200px;
+  flex: 1;
+  max-width: 50%;
   overflow: hidden;
-  border-radius: 8px;
+  position: relative;
+}
+
+.theme-dark .imageContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), transparent);
+  z-index: 1;
 }
 
 .dishImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.imageContainer:hover .dishImage {
+  transform: scale(1.05);
 }
 
 .dishInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  flex: 1;
+  padding: var(--spacing-lg);
+  overflow-y: auto;
+}
+
+.theme-dark .dishInfo {
+  background: linear-gradient(to bottom, rgba(10, 10, 10, 0.8), rgba(17, 17, 17, 0.8));
 }
 
 .tags {
   display: flex;
-  gap: 8px;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
   flex-wrap: wrap;
 }
 
 .tag {
-  background-color: #f0f0f0;
-  padding: 6px 12px;
-  border-radius: 16px;
-  font-size: 14px;
-  color: #555;
-  display: flex;
-  align-items: center;
-  gap: 4px;
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.theme-dark .tag {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.spicy {
+  color: #e63946;
+  background-color: rgba(230, 57, 70, 0.08);
+  border: 1px solid rgba(230, 57, 70, 0.2);
+}
+
+.theme-dark .spicy {
+  background-color: rgba(230, 57, 70, 0.15);
+  border: 1px solid rgba(230, 57, 70, 0.3);
+  color: #ff6b6b;
+}
+
+.vegetarian {
+  color: #2b9348;
+  background-color: rgba(43, 147, 72, 0.08);
+  border: 1px solid rgba(43, 147, 72, 0.2);
+}
+
+.theme-dark .vegetarian {
+  background-color: rgba(43, 147, 72, 0.15);
+  border: 1px solid rgba(43, 147, 72, 0.3);
+  color: #40c463;
+}
+
+.alcoholic {
+  color: #9d4edd;
+  background-color: rgba(157, 78, 221, 0.08);
+  border: 1px solid rgba(157, 78, 221, 0.2);
+}
+
+.theme-dark .alcoholic {
+  background-color: rgba(157, 78, 221, 0.15);
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  color: #b76eff;
 }
 
 .price {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--accent-color);
+  margin-bottom: var(--spacing-md);
+  display: flex;
+  align-items: center;
+}
+
+.theme-dark .price {
+  color: var(--accent-color);
+  text-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+}
+
+.price::before {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 2px;
+  background-color: var(--accent-color);
+  margin-right: var(--spacing-sm);
+}
+
+.theme-dark .price::before {
+  background-color: var(--accent-color);
+  box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
 }
 
 .tabs {
   display: flex;
-  gap: 10px;
-  border-bottom: 2px solid #eee;
-  margin-bottom: 20px;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.theme-dark .tabs {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .tabBtn {
+  padding: var(--spacing-sm) var(--spacing-md);
   background: none;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #666;
   cursor: pointer;
-  transition: all 0.2s;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  transition: all var(--transition-normal);
   border-bottom: 2px solid transparent;
+  font-weight: 500;
+}
+
+.theme-dark .tabBtn {
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .tabBtn.active {
-  color: #000;
-  border-bottom: 2px solid #007bff;
-  font-weight: bold;
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.theme-dark .tabBtn.active {
+  color: var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
+  text-shadow: 0 0 8px rgba(255, 193, 7, 0.3);
 }
 
 .tabBtn:hover {
-  color: #000;
+  color: var(--accent-color);
+}
+
+.theme-dark .tabBtn:hover {
+  color: var(--accent-color);
 }
 
 .tabContent {
-  padding: 10px 0;
+  margin-bottom: var(--spacing-md);
 }
 
 .description,
 .ingredients,
 .recipe {
-  font-size: 16px;
-  color: #444;
   line-height: 1.6;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.theme-dark .description,
+.theme-dark .ingredients,
+.theme-dark .recipe {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.description p {
+  margin-bottom: var(--spacing-md);
 }
 
 .ingredients ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  list-style-type: disc;
+}
+
+.theme-dark .ingredients ul li::marker {
+  color: var(--accent-color);
 }
 
 .ingredients li {
-  padding: 6px 0;
-  border-bottom: 1px solid #eee;
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-secondary);
 }
 
 .ingredients li:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .recipe p {
-  margin: 0;
+  white-space: pre-line;
 }
 
 .actions {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
+  margin-top: var(--spacing-lg);
+  text-align: center;
 }
 
 .addToCartBtn {
-  background-color: #007bff;
-  color: #fff;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--accent-color);
+  color: white;
   border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all var(--transition-normal);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-dark .addToCartBtn {
+  background: var(--gradient-accent);
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
 }
 
 .addToCartBtn:hover {
-  background-color: #0056b3;
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-dark .addToCartBtn:hover {
+  box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+  transform: translateY(-3px);
+}
+
+.addToCartBtn::before {
+  content: '+';
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+@media (max-width: 992px) {
+  .modalContent {
+    flex-direction: column;
+  }
+  
+  .imageContainer {
+    max-width: 100%;
+    height: 300px;
+  }
+  
+  .dishInfo {
+    padding: var(--spacing-md);
+  }
+}
+
+@media (max-width: 768px) {
+  .modalHeader h2 {
+    font-size: 1.5rem;
+  }
+  
+  .dishInfo {
+    padding: var(--spacing-md);
+  }
+  
+  .price {
+    font-size: 1.3rem;
+  }
+  
+  .closeBtn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .overlay {
+    padding: var(--spacing-sm);
+  }
+  
+  .modalHeader {
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-sm);
+  }
+  
+  .modalHeader h2 {
+    font-size: 1.3rem;
+  }
+  
+  .tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+  }
+  
+  .tabBtn {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.9rem;
+  }
 }

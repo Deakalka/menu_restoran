@@ -1,0 +1,65 @@
+.themeToggle {
+  margin: 1rem 0;
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 2rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggleButton:hover {
+  background-color: var(--bg-hover);
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--accent-color);
+}
+
+.themeName {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Адаптивний дизайн */
+@media (max-width: 768px) {
+  .themeToggle {
+    margin: 0.5rem 0;
+  }
+  
+  .toggleButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Стилі для різних тем */
+:global(.theme-light) .toggleButton {
+  background-color: #f8f9fa;
+  border-color: #e9ecef;
+  color: #495057;
+}
+
+:global(.theme-dark) .toggleButton {
+  background-color: #212529;
+  border-color: #343a40;
+  color: #f8f9fa;
+}
+
+:global(.theme-green) .toggleButton {
+  background-color: #d8f3dc;
+  border-color: #b7e4c7;
+  color: #2d6a4f;
+} 

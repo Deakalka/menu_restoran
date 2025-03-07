@@ -1,0 +1,128 @@
+.button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Розміри */
+.button-small {
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.button-medium {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+}
+
+.button-large {
+  padding: 0.8rem 1.6rem;
+  font-size: 1.1rem;
+}
+
+/* Варіанти */
+.button-primary {
+  background-color: #5d9e52;
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: #4a8943;
+}
+
+.button-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.button-secondary:hover {
+  background-color: #e0e0e0;
+}
+
+.button-outline {
+  background-color: transparent;
+  border: 1px solid #5d9e52;
+  color: #5d9e52;
+}
+
+.button-outline:hover {
+  background-color: rgba(93, 158, 82, 0.1);
+}
+
+.button-text {
+  background-color: transparent;
+  color: #5d9e52;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.button-text:hover {
+  background-color: rgba(93, 158, 82, 0.1);
+}
+
+.button-danger {
+  background-color: #e53935;
+  color: white;
+}
+
+.button-danger:hover {
+  background-color: #c62828;
+}
+
+/* Теми */
+.theme-dark.button-primary {
+  background-color: #7eb772;
+}
+
+.theme-dark.button-primary:hover {
+  background-color: #6ca464;
+}
+
+.theme-dark.button-secondary {
+  background-color: #333;
+  color: #fff;
+}
+
+.theme-dark.button-secondary:hover {
+  background-color: #444;
+}
+
+.theme-dark.button-outline {
+  border-color: #7eb772;
+  color: #7eb772;
+}
+
+.theme-dark.button-outline:hover {
+  background-color: rgba(126, 183, 114, 0.2);
+}
+
+.theme-dark.button-text {
+  color: #7eb772;
+}
+
+.theme-dark.button-text:hover {
+  background-color: rgba(126, 183, 114, 0.2);
+}
+
+.theme-green.button-primary {
+  background-color: #388e3c;
+}
+
+.theme-green.button-primary:hover {
+  background-color: #2e7d32;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+} 

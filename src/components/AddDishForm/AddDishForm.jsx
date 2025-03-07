@@ -10,8 +10,7 @@ const AddDishForm = ({ onAddDish, categories }) => {
       .required("Назва страви обов'язкова")
       .min(3, "Назва страви повинна містити щонайменше 3 символи")
       .max(50, "Назва страви повинна бути не більше 50 символів"),
-    dishCategory: Yup.string()
-      .required("Категорія страви обов'язкова"),
+    dishCategory: Yup.string().required("Категорія страви обов'язкова"),
     dishPrice: Yup.number()
       .required("Ціна страви обов'язкова")
       .positive("Ціна повинна бути додатнім числом")
@@ -52,69 +51,91 @@ const AddDishForm = ({ onAddDish, categories }) => {
       onSubmit={handleSubmit}
     >
       {({ errors, touched }) => (
-        <Form className={css.form}>
-          <h2>Додати нову страву</h2>
-          <label className={css.label}>
-            Назва
-            <Field type="text" name="dishName" className={css.input} />
-            {errors.dishName && touched.dishName ? (
-              <div className={css.error}>{errors.dishName}</div>
-            ) : null}
-          </label>
-          <label className={css.label}>
-            Оберіть категорію
-            <Field as="select" name="dishCategory" className={css.input}>
-              <option value="">Оберіть категорію</option>
-              {categories.map((category, index) => (
-                <option key={index} value={category}>
-                  {category}
-                </option>
-              ))}
-            </Field>
-            {errors.dishCategory && touched.dishCategory ? (
-              <div className={css.error}>{errors.dishCategory}</div>
-            ) : null}
-          </label>
-          <label className={css.label}>
-            Ціна
-            <Field type="number" name="dishPrice" className={css.input} />
-            {errors.dishPrice && touched.dishPrice ? (
-              <div className={css.error}>{errors.dishPrice}</div>
-            ) : null}
-          </label>
-          <label className={css.label}>
-            Опис страви
-            <Field
-              as="textarea"
-              cols="20"
-              rows="5"
-              name="dishDescription"
-              className={css.input}
-            />
-            {errors.dishDescription && touched.dishDescription ? (
-              <div className={css.error}>{errors.dishDescription}</div>
-            ) : null}
-          </label>
-          <label className={css.label}>Особливості</label>
-          <label>
-            <Field type="checkbox" name="selectedOptions" value="Vegan" />
-            Vegan
-          </label>
-          <label>
-            <Field type="checkbox" name="selectedOptions" value="Alco" />
-            Alco
-          </label>
-          <label>
-            <Field type="checkbox" name="selectedOptions" value="Hot" />
-            Hot
-          </label>
-          {errors.selectedOptions && touched.selectedOptions ? (
-            <div className={css.error}>{errors.selectedOptions}</div>
-          ) : null}
-          <button type="submit" className={css.btn}>
-            Надіслати
-          </button>
-        </Form>
+        <div className={css.formContainer}>
+          <h2 className={css.formTitle}>Додати нову страву</h2>
+          <Form className={css.formGrid}>
+            <div className={css.formGroup}>
+              <label className={css.formLabel}>
+                Назва
+                <Field type="text" name="dishName" className={css.formInput} />
+                {errors.dishName && touched.dishName ? (
+                  <div className={css.formError}>{errors.dishName}</div>
+                ) : null}
+              </label>
+            </div>
+            
+            <div className={css.formGroup}>
+              <label className={css.formLabel}>
+                Оберіть категорію
+                <Field as="select" name="dishCategory" className={css.formSelect}>
+                  <option value="">Оберіть категорію</option>
+                  {categories.map((category, index) => (
+                    <option key={index} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </Field>
+                {errors.dishCategory && touched.dishCategory ? (
+                  <div className={css.formError}>{errors.dishCategory}</div>
+                ) : null}
+              </label>
+            </div>
+            
+            <div className={css.formGroup}>
+              <label className={css.formLabel}>
+                Ціна
+                <Field type="number" name="dishPrice" className={css.formInput} />
+                {errors.dishPrice && touched.dishPrice ? (
+                  <div className={css.formError}>{errors.dishPrice}</div>
+                ) : null}
+              </label>
+            </div>
+            
+            <div className={css.formGroup + ' ' + css.fullWidth}>
+              <label className={css.formLabel}>
+                Опис страви
+                <Field
+                  as="textarea"
+                  cols="20"
+                  rows="5"
+                  name="dishDescription"
+                  className={css.formTextarea}
+                />
+                {errors.dishDescription && touched.dishDescription ? (
+                  <div className={css.formError}>{errors.dishDescription}</div>
+                ) : null}
+              </label>
+            </div>
+            
+            <div className={css.formGroup + ' ' + css.fullWidth}>
+              <label className={css.formLabel}>Особливості</label>
+              <div className={css.checkboxGroup}>
+                <Field type="checkbox" name="selectedOptions" value="Vegan" className={css.checkboxInput} />
+                <label className={css.checkboxLabel}>Вегетаріанська</label>
+              </div>
+              <div className={css.checkboxGroup}>
+                <Field type="checkbox" name="selectedOptions" value="Alco" className={css.checkboxInput} />
+                <label className={css.checkboxLabel}>Алкоголь</label>
+              </div>
+              <div className={css.checkboxGroup}>
+                <Field type="checkbox" name="selectedOptions" value="Hot" className={css.checkboxInput} />
+                <label className={css.checkboxLabel}>Гостра</label>
+              </div>
+              {errors.selectedOptions && touched.selectedOptions ? (
+                <div className={css.formError}>{errors.selectedOptions}</div>
+              ) : null}
+            </div>
+            
+            <div className={css.formActions}>
+              <button type="submit" className={css.submitButton}>
+                Надіслати
+              </button>
+              <button type="reset" className={css.cancelButton}>
+                Скасувати
+              </button>
+            </div>
+          </Form>
+        </div>
       )}
     </Formik>
   );

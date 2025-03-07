@@ -1,68 +1,98 @@
-import { memo, useMemo } from 'react';
-import MenuCard from '../MenuCard/MenuCard';
-import css from './MenuList.module.css';
+import { memo } from 'react';
 import PropTypes from 'prop-types';
+import MenuCard from '../MenuCard/MenuCard';
+import { useFilter } from '../../context/FilterContext';
+import styles from './MenuList.module.css';
 
-const MenuList = memo(({   menuItems, userAge, curCategory, userDish, onAddToCart, onOpenDishModal  }) => {
-  const filteredItems = useMemo(() => {
-    // Спочатку фільтруємо по віку
-    const ageFiltered = menuItems.filter(item => !(item.isAlcoholic && userAge < 18));
-    
-    // Потім застосовуємо фільтр за назвою або категорією
-    if (userDish?.trim()) {
-      return ageFiltered.filter(item => 
-        item.name.toLowerCase().includes(userDish.toLowerCase())
-      );
-    } else if (curCategory && curCategory !== "Оберіть категорію") {
-      return ageFiltered.filter(item => item.category === curCategory);
+const MenuList = ({ dishes, onOpenModal }) => {
+  const { activeCategory, searchQuery } = useFilter();
+  
+  // Групуємо страви за категоріями для відображення у відсортованому вигляді
+  const groupedDishes = dishes.reduce((acc, dish) => {
+    if (!acc[dish.category]) {
+      acc[dish.category] = [];
     }
-    
-    return ageFiltered;
-  }, [menuItems, userAge, curCategory, userDish]);
-
-  if (filteredItems.length === 0) {
-    return <p className={css.noResults}>Нічого не знайдено. Спробуйте змінити параметри пошуку.</p>;
+    acc[dish.category].push(dish);
+    return acc;
+  }, {});
+  
+  // Отримуємо відсортований список категорій
+  const sortedCategories = Object.keys(groupedDishes).sort();
+  
+  // Перевіряємо, чи є страви для відображення
+  const hasNoResults = dishes.length === 0;
+  
+  // Якщо немає результатів, відображаємо відповідне повідомлення
+  if (hasNoResults) {
+    return (
+      <div className={styles.noResults}>
+        <h2>Не знайдено жодної страви</h2>
+        <p>
+          {searchQuery 
+            ? `За запитом "${searchQuery}" нічого не знайдено.` 
+            : activeCategory !== 'Всі' 
+              ? `У категорії "${activeCategory}" немає страв.` 
+              : 'Спробуйте змінити параметри фільтрації.'
+          }
+        </p>
+      </div>
+    );
   }
 
   return (
-    <ul className={css.list}>
-    {filteredItems.map((menuItem) => (
-      <li key={menuItem.id} className={css.card}>
-        <MenuCard 
-          key={`card-${menuItem.id}`}
-          menuItem={menuItem} 
-          onAddToCart={onAddToCart} 
-          onOpenDishModal={onOpenDishModal}
-        />
-      </li>
-    ))}
-  </ul>
+    <div className={styles.menuListContainer}>
+      {activeCategory === 'Всі' ? (
+        // Якщо обрано "Всі", відображаємо страви, згруповані за категоріями
+        sortedCategories.map(category => (
+          <div key={category} className={styles.categorySection}>
+            <h2 className={styles.categoryHeading}>{category}</h2>
+            <div className={styles.list}>
+              {groupedDishes[category].map(dish => (
+                <MenuCard 
+                  key={dish.id} 
+                  dish={dish} 
+                  onClick={() => onOpenModal(dish)} 
+                />
+              ))}
+            </div>
+          </div>
+        ))
+      ) : (
+        // Якщо обрана конкретна категорія, відображаємо тільки страви цієї категорії
+        <div className={styles.categorySection}>
+          <h2 className={styles.categoryHeading}>{activeCategory}</h2>
+          <div className={styles.list}>
+            {dishes.map(dish => (
+              <MenuCard 
+                key={dish.id} 
+                dish={dish} 
+                onClick={() => onOpenModal(dish)} 
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
-});
+};
 
 MenuList.propTypes = {
-  menuItems: PropTypes.arrayOf(
+  dishes: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
-      isAlcoholic: PropTypes.bool,
+      title: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      image: PropTypes.string,
+      description: PropTypes.string,
+      isVegetarian: PropTypes.bool,
+      spiciness: PropTypes.number,
+      isAlcoholic: PropTypes.bool,
     })
   ).isRequired,
-  userAge: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  curCategory: PropTypes.string,
-  userDish: PropTypes.string,
-  onAddToCart: PropTypes.func.isRequired,
-  onOpenDishModal: PropTypes.func.isRequired,
-
+  onOpenModal: PropTypes.func.isRequired,
 };
 
-MenuList.defaultProps = {
-  userAge: 0,
-  curCategory: '',
-  userDish: '',
-};
-
-MenuList.displayName = 'MenuList';
-
-export default MenuList;
+// Використовуємо memo для оптимізації продуктивності
+export default memo(MenuList);

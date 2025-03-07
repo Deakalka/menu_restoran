@@ -1,54 +1,62 @@
 import css from "./UserForm.module.css";
-import PropTypes from 'prop-types';
-import { memo } from 'react';
+import PropTypes from "prop-types";
+import { memo } from "react";
 
 const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
   const handleInputChange = (field, value) => {
-    setUser(prevUser => ({ ...prevUser, [field]: value }));
+    setUser((prevUser) => ({ ...prevUser, [field]: value }));
   };
 
   const handleCategoryChange = (e) => {
     const newCategory = e.target.value;
-    setUser(prevUser => ({ ...prevUser, category: newCategory }));
+    setUser((prevUser) => ({ ...prevUser, category: newCategory }));
     setCurCategory(newCategory);
   };
 
   const handleAgeConsent = (e) => {
     const isConsented = e.target.checked;
-    setUser(prevUser => ({ 
-      ...prevUser, 
+    setUser((prevUser) => ({
+      ...prevUser,
       ageConsent: isConsented,
-      age: isConsented ? prevUser.age : ''
+      age: isConsented ? prevUser.age : "",
     }));
   };
 
-  const filteredCategories = categories.filter(category => 
-    !(category === "Алкогольні напої" && !user.ageConsent)
+  const filteredCategories = categories.filter(
+    (category) => !(category === "Алкогольні напої" && !user.ageConsent)
   );
 
   return (
     <form className={css.form}>
       <div className={css.formGroup}>
-        <label htmlFor="dish" className={css.label}>Назва страви</label>
+        <label htmlFor="dish" className={css.label}>
+          Назва страви
+        </label>
         <input
           id="dish"
           type="text"
           className={css.input}
-          onChange={(e) => handleInputChange('dish', e.target.value)}
+          onChange={(e) => handleInputChange("dish", e.target.value)}
           value={user.dish}
           placeholder="Введіть назву страви"
         />
       </div>
 
       <div className={css.formGroup}>
-        <label htmlFor="category" className={css.label}>Категорія</label>
+        <label htmlFor="category" className={css.label}>
+          Категорія
+        </label>
         <select
           id="category"
-          className={`${css.select}  ${user.dish.trim().length > 0 ? css.dimmed : ''}`}
+          className={`${css.select}  ${
+            user.dish.trim().length > 0 ? css.dimmed : ""
+          }`}
           value={user.category}
           onChange={handleCategoryChange}
         >
-          <option value="" key="default-option">Оберіть категорію</option>
+          <option value="" key="default-option">
+            Оберіть категорію
+          </option>
           {filteredCategories.map((category) => (
             <option key={category} value={category}>
               {category}
@@ -58,18 +66,20 @@ const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
       </div>
 
       <div className={css.formGroup}>
-        <label htmlFor="price" className={css.label}>Ціна</label>
+        <label htmlFor="price" className={css.label}>
+          Ціна
+        </label>
         <input
           id="price"
           type="number"
           className={css.input}
-          value={user.price || ''}
+          value={user.price || ""}
           placeholder="Виберіть діапазон цін"
           min="0"
-          onChange={(e) => handleInputChange('price', Number(e.target.value))}
+          onChange={(e) => handleInputChange("price", Number(e.target.value))}
         />
       </div>
-
+          
       <div className={css.formGroup}>
         <label className={css.label}>Дані клієнта</label>
         <input
@@ -78,7 +88,7 @@ const UserForm = memo(({ user, setUser, categories, setCurCategory }) => {
           className={css.input}
           value={user.name}
           placeholder="Ім'я"
-          onChange={(e) => handleInputChange('name', e.target.value)}
+          onChange={(e) => handleInputChange("name", e.target.value)}
         />
         <div className={css.checkboxGroup}>
           <input
@@ -107,9 +117,9 @@ UserForm.propTypes = {
   }).isRequired,
   setUser: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
-  setCurCategory: PropTypes.func.isRequired, 
+  setCurCategory: PropTypes.func.isRequired,
 };
 
-UserForm.displayName = 'UserForm';
+UserForm.displayName = "UserForm";
 
 export default UserForm;
